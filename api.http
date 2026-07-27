@@ -1,0 +1,41 @@
+GET http://localhost:3000/squires
+
+### Buscar Escudeiro por ID
+GET http://localhost:3000/squires/6a67b3a88126aa2c5b967058
+
+
+### Criar Escudeiro
+POST http://localhost:3000/squires
+Content-Type: application/json
+
+{
+    "firstName": "Kirito",
+    "lastName": "Kirigaya",
+    "email": "kirito@email.com",
+    "password": "123456"
+}
+
+### Criar Escudeiro 2
+POST http://localhost:3000/squires
+Content-Type: application/json
+
+{
+    "firstName": "Asuna",
+    "lastName": "Yuuki",
+    "email": "asuna@email.com",
+    "password": "123456"
+}
+
+### Atualizar Escudeiro
+PUT http://localhost:3000/squires/6a67b3a88126aa2c5b967058
+Content-Type: application/json
+
+{
+    "firstName": "Kirito Atualizado ",
+    "lastName": "Kirigaya",
+    "email": "easuna@email.com",
+    "password": "123456"
+}
+
+### Deletar Escudeiro
+DELETE http://localhost:3000/squires/6a67b4058126aa2c5b967059
