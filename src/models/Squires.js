@@ -1,5 +1,6 @@
 const moogose = require("mongoose");
 
+
 const squiresSchema = new moogose.Schema(
   {
     firstName: {
@@ -16,7 +17,7 @@ const squiresSchema = new moogose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   {

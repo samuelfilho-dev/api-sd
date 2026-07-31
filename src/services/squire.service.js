@@ -1,4 +1,6 @@
 const Squire = require("../models/Squires");
+const squireSchema = require("../schemas/squires.schema");
+const bcrypt = require("bcrypt");
 
 async function getAllSquires() {
   return await Squire.find();
@@ -9,8 +11,22 @@ async function getSquireById(id) {
 }
 
 async function createSquire(squireData) {
+  const check = squireSchema.safeParse(squireData);
+
+  if (!check.success) {
+    console.error("Erro de validação:", check.error.format());
+    return;
+  }
+
+  if (squireData.password !== null && squireData.password !== undefined) {
+    squireData.password = await bcrypt.hash(squireData.password, 10);
+  }
+
   const newSquire = new Squire(squireData);
-  return await newSquire.save();
+  const savedSquire = await newSquire.save();
+  const { password, ...squireWithoutPassword } = savedSquire.toObject();
+
+  return squireWithoutPassword;
 }
 
 async function updateSquire(id, squireData) {
